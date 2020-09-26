@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+	<div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_6.jpg' %} );">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Checkout</span></p>
+					<h1 class="mb-0 bread">WELCOME TO VMARTS !!!</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<section class="ftco-section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-10 ftco-animate">
+				<form method="POST" class="billing-form" >
+					{% csrf_token %}
+					<h3 class="mb-4 billing-heading">Shipping Details</h3>
+					<div class='hideable_shipping_form'>
+						<div class="row align-items-end">
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="sfirstname">First Name</label> 
+									{% comment %} {{form.first_name}} {% endcomment %}
+									<input type="text" name ='sfirstname' class="form-control" placeholder="First Name" >
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="slastname">Last Name</label>
+									{% comment %} {{form.last_name}} {% endcomment %}
+									<input type="text" name ='slastname' class="form-control" placeholder="Last Name" >
+								</div>
+							</div>
+
+							<div class="w-100"></div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<div class="select-wrap">
+										<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+										<label for="country">State / Country</label>{{form.shipping_country}}
+										<div class="invalid-feedback">
+											Please select a valid country.
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="w-100"></div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="sstreetaddress">Street Address</label> 
+									{% comment %} {{form.Streetaddress}} {% endcomment %}
+									<input type="text" name = 'sstreetaddress' class="form-control" placeholder="House number and street name">
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="sapartment">Apartment Number</label>
+									{% comment %} {{form.apartment}} {% endcomment %}
+									<input type="text" name ='sapartment' class="form-control" placeholder="Appartment, suite, unit etc">
+								</div>
+							</div>
+
+							<div class="w-100"></div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="scity">Town / City</label>
+									{% comment %} {{form.city}} {% endcomment %}
+									<input type="text" name = 'scity' class="form-control" placeholder="City" >
+								</div>
+							</div>
+
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="szipcode">Postcode / ZIP *</label> 
+									{% comment %} {{form.zipcode}} {% endcomment %}
+									<input type="text" name = 'szipcode' class="form-control" placeholder="Pin Code">
+								</div>
+							</div>
+
+							<div class="w-100"></div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="sphone">Phone</label>
+									{% comment %} {{form.phone}} {% endcomment %}
+									<input type="text" name= 'sphone' class="form-control" placeholder="Phone Number">
+								</div>
+							</div>
+
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="semail">Email Address</label> 
+									{% comment %} {{form.email}} {% endcomment %}
+									<input type="text" name = 'semail' class="form-control" placeholder="Email Address">
+								</div>
+							</div>
+
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" name="same_billing_address" id="same_billing_address">
+								<label class="custom-control-label" for="same_billing_address">Billing address is the same as my shipping address</label>
+							</div>
+							
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" name="set_default_shipping" id="set_default_shipping">
+								<label class="custom-control-label" for="set_default_shipping">Save as default shipping address</label>
+							</div>
+						</div>
+					</div>
+							{% if default_shipping_address %}
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" name="use_default_shipping" id="use_default_shipping">
+								<label class="custom-control-label" for="use_default_shipping">Use default shipping address: {{ default_shipping_address.street_address|truncatechars:10 }}</label>
+							</div>
+							{% endif %}  
+
+
+
+					<h3 class="mt-4 billing-heading">Billing Details</h3>
+					<div class='hideable_billing_form'>
+						<div class="row align-items-end">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="dfirstname">First Name</label> 
+									{% comment %} {{form.first_name}} {% endcomment %}
+									<input type="text" name ='dfirstname' class="form-control" placeholder="First Name" >
+								</div>
+							</div>  
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="dlastname">Last Name</label>
+									{% comment %} {{form.last_name}} {% endcomment %}
+									<input type="text" name ='dlastname' class="form-control" placeholder="Last Name" >
+								</div>
+							</div>
+
+							<div class="w-100"></div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<div class="select-wrap">
+										<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+										<label for="country">State / Country</label>{{form.billing_country}}
+									</div>
+								</div>
+							</div>
+
+							<div class="w-100"></div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="dstreetaddress">Street Address</label> 
+									{% comment %} {{form.Streetaddress}} {% endcomment %}
+									<input type="text" name = 'dstreetaddress' class="form-control" placeholder="House number and street name">
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="dapartment">Apartment Number</label>
+									{% comment %} {{form.apartment}} {% endcomment %}
+									<input type="text" name ='dapartment' class="form-control" placeholder="Appartment, suite, unit etc">
+								</div>
+							</div>
+
+							<div class="w-100"></div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="dcity">Town / City</label>
+									{% comment %} {{form.city}} {% endcomment %}
+									<input type="text" name = 'dcity' class="form-control" placeholder="City" >
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="dzipcode">Postcode / ZIP *</label> 
+									{% comment %} {{form.zipcode}} {% endcomment %}
+									<input type="text" name = 'dzipcode' class="form-control" placeholder="Pin Code">
+								</div>
+							</div>
+
+							<div class="w-100"></div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="dphone">Phone</label>
+									{% comment %} {{form.phone}} {% endcomment %}
+									<input type="text" name= 'dphone' class="form-control" placeholder="Phone Number">
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="demail">Email Address</label> 
+									{% comment %} {{form.email}} {% endcomment %}
+									<input type="text" name = 'demail' class="form-control" placeholder="Email Address">
+								</div>
+							</div>
+
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" name="set_default_billing" id="set_default_billing">
+								<label class="custom-control-label" for="set_default_billing">Save as default billing address</label>
+							</div>
+						</div>
+					</div>
+
+						{% if default_billing_address %}
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" name="use_default_billing" id="use_default_billing">
+							<label class="custom-control-label" for="use_default_billing">Use default billing address: {{ default_billing_address.street_address|truncatechars:10 }}</label>
+						</div>
+						{% endif %}
+					       
+					<div class="row mt-5 pt-3 d-flex">
+						<div class="col-md-6 d-flex">
+							<div class="cart-detail cart-total bg-light p-3 p-md-4">
+								<h3 class="billing-heading mb-4">Cart Total</h3>
+								<p class="d-flex">
+									<span>Subtotal</span>
+									<span>&#x20b9;{{order.get_order_total}}</span>
+								</p>
+								<p class="d-flex">
+									<span>Delivery</span>
+									<span>&#x20b9;{{order.get_total}}</span>
+								</p>
+								{% if order.coupon %}
+								<p class="d-flex">
+									<span>Discount</span>
+									<span>&#x20b9;{{order.coupon.amount}}</span>
+								</p>
+								{% endif %}
+								<hr>
+								<p class="d-flex total-price">
+									<span>Total</span>
+									<span>&#x20b9;{{order.get_total}}</span>
+								</p>
+							</div>
+						</div>
+
+
+						<div class="col-md-6">
+							<div class="cart-detail bg-light p-3 p-md-4">
+								<h3 class="billing-heading mb-4">Payment Method</h3>
+								{% for value ,name in form.fields.payment_option.choices %}
+								<div class="form-group">
+									<div class="col-md-12">
+										<div class="radio">
+											<label><input type="radio" name="payment_option" value="{{ value }}" class="mr-2"> {{name}}</label>
+										</div>
+									</div>
+								</div>
+								{%endfor%}
+
+								<div class="form-group">
+									<div class="col-md-12">
+										<div class="checkbox">
+											<label><input type="checkbox" name = 'terms' value="comp" class="mr-2"> I have read and accept the terms and conditions</label>
+										</div>
+									</div>
+								</div>
+								<button> <a type="submit" class="btn btn-primary py-3 px-4">Place an order</a></button>
+								{% comment %} <button><a type="submit" class="btn btn-primary py-3 px-4">Place an order</a></button> {% endcomment %}
+							</div>
+						</div> 
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock body %}
+
+
+{% block extra_scripts %}
+<script>
+    var hideable_shipping_form = $('.hideable_shipping_form');
+    var hideable_billing_form = $('.hideable_billing_form');
+
+    var use_default_shipping = document.querySelector("input[name=use_default_shipping]");
+    var use_default_billing = document.querySelector("input[name=use_default_billing]");
+
+    use_default_shipping.addEventListener('change', function() {
+      if (this.checked) {
+        hideable_shipping_form.hide();
+      } else {
+        hideable_shipping_form.show();
+      }
+    })
+
+    use_default_billing.addEventListener('change', function() {
+      if (this.checked) {
+        hideable_billing_form.hide();
+      } else {
+        hideable_billing_form.show();
+      }
+    })
+
+</script>
+{% endblock extra_scripts %}
