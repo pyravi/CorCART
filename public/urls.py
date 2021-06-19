@@ -23,7 +23,6 @@ from .views import(
     PolicyView,
     test
 ) 
-from .chatbot.chatintapi import chat
 app_name = 'public'
 
 # Wire up our API using automatic URL routing.
@@ -53,7 +52,6 @@ urlpatterns = [
     path("OrderSuccessfully/",OrderSuccessfully,name="OrderSuccessfully"),
     path("payment/<payment_option>/",PaymentView.as_view(),name="payment"),
     path("request-refund/",RequestRefundView.as_view(),name="request-refund"),
-    path("chat/",chat,name='chat'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('search/',SearchView.as_view(),name='search'),

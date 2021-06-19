@@ -1,7 +1,0 @@
-client_key = u"consumer key"
-client_secret = u"consumer secret"
-resource_owner_key = u"Access token"
-resource_owner_secret = u"access token secret"
-base_url_v = "127.0.0.1"
-store_name = "vmart"
-app_name = "public"
